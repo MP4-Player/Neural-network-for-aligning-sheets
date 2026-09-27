@@ -1,5 +1,7 @@
 # Document Alignment with HomographyNet
 
+> **Take-home test assignment for a job interview** (computer vision). The final solution is at the top level; the development history is in [`drafts/`](drafts).
+
 A deep learning model that **straightens photos of paper sheets**: it predicts the homography that maps a skewed, perspective-distorted photo of a sheet to a flat, front-facing view.
 
 ## Problem
@@ -52,6 +54,20 @@ peper/
   homography_data.csv      # image_path + 8 homography parameters
   extracted_frames/        # images to align at inference
 ```
+
+## Development process
+
+This was a take-home task for a job interview. [`drafts/`](drafts) keeps the whole path to the final model:
+
+| Stage | Files | Idea |
+|---|---|---|
+| Classical CV | `peper.py`, `БезИИ.py` ("without AI"), `4тщчки.ipynb` | Contour detection → polygon approximation → 4 sheet corners → perspective transform; adaptive thresholding and Canny edges |
+| More robust thresholding | `14адап.ipynb`, `15adap.ipynb`, `16групировка.ipynb`, `17`–`19`, `23.ipynb` | Adaptive thresholds and grouping of contours for difficult lighting |
+| Own dataset | `peper/razmetka.py`, `итоговаяразметка.py`, `code (8).py`, `sheet_slicing.py` | Labelling tool: click the four corners, align the sheet and store the homography parameters in a CSV; slicing video into frames |
+| YOLO | `yolo.ipynb`, `йоло.ipynb`, `yolo-training/9.ipynb` | Attempt to detect the sheet with a YOLO model |
+| Neural homography | `12otpravku.ipynb`, `13.ipynb`, `otpravkapeper.py`, `итоговое.ipynb`, `ai.ipynb`, `новыйчат.ipynb` | HomographyNet iterations that led to the final notebook |
+
+The two largest notebooks are stored without their saved outputs to stay within GitHub's file size limit. The dataset and trained weights are not published.
 
 ## Tech stack
 
